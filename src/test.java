@@ -1,12 +1,11 @@
 import kareltherobot.*;
 import kareltherobot.Robot;
 
-import java.awt.*;
 
 /**
- * Created by Will Dang on 9/15/2015.
+ * Author: Will Dang
+ * 9/15/2015.
  */
-
 class BetterBot extends Robot implements Directions {
     public BetterBot(int st, int av, Direction dir, int beeps) {
         super(st, av, dir, beeps);
@@ -24,6 +23,7 @@ class BetterBot extends Robot implements Directions {
     }
 
     //this gets ugly
+    /*
     public void returnToOrigin() { //assumes no obstacles
         while (!facingSouth()) {
             turnLeft();
@@ -40,6 +40,7 @@ class BetterBot extends Robot implements Directions {
             }
         }
     }
+    */
 
     public void roombaLeft() {
         while(frontIsClear()) {
@@ -59,7 +60,10 @@ class BetterBot extends Robot implements Directions {
         }
         roombaLeft();
     }
-    public void SimplePathing() {
+
+    /*
+    @SuppressWarnings("InfiniteRecursion")
+    public void SimplePathing() { //testing
         if (frontIsClear()) {
             move();
             turnLeft();
@@ -72,6 +76,8 @@ class BetterBot extends Robot implements Directions {
             SimplePathing();
         }
     }
+    */
+
     public int countBeepers() { //assumes empty bag
         int numberOfBeepers = 0;
         if (!anyBeepersInBeeperBag()){
