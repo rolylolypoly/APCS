@@ -1,24 +1,28 @@
 import kareltherobot.*;
+import kareltherobot.Robot;
+
+import java.awt.*;
 
 /**
  * Created by Will Dang on 9/15/2015.
  */
 
-class BetterBot extends Robot implements Directions
-{
-    public BetterBot (int st, int av, Direction dir, int beeps) {
+class BetterBot extends Robot implements Directions {
+    public BetterBot(int st, int av, Direction dir, int beeps) {
         super(st, av, dir, beeps);
     }
 
-    public void turnRight( ) {
+    public void turnRight() {
         turnLeft();
         turnLeft();
         turnLeft();
     }
+
     public void turnAround() {
         turnLeft();
         turnLeft();
     }
+
     //this gets ugly
     public void returnToOrigin() { //assumes no obstacles
         while (!facingSouth()) {
@@ -28,7 +32,7 @@ class BetterBot extends Robot implements Directions
             while (frontIsClear()) {
                 move();
             }
-            if (!frontIsClear()){
+            if (!frontIsClear()) {
                 turnRight();
                 while (frontIsClear()) {
                     move();
@@ -37,19 +41,40 @@ class BetterBot extends Robot implements Directions
         }
     }
 
+    public void roombaLeft() {
+        while(frontIsClear()) {
+            move();
+        }
+        while (!frontIsClear()) {
+            turnLeft();
+        }
+        roombaRight();
+    }
+    public void roombaRight() {
+        while(frontIsClear()) {
+            move();
+        }
+        while (!frontIsClear()) {
+            turnRight();
+        }
+        roombaLeft();
+    }
+}
 
-// more commands here …
 
-} // end of the blue print
-public class test implements Directions {
-    public static void main(String[] args) throws Exception{
+
+public class test implements Directions  {
+    public static void main(String[] args) throws Exception {
         BetterBot b = new BetterBot(9,9,North, 999);
-        b.returnToOrigin();
+        b.roombaRight();
+
 
     }
     static {
         World.reset();
-        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/blank.kwld");
-        World.setDelay(0);
+        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/problembox.kwld");
+        World.setDelay(1);
+        World.repaint();
+        World.setVisible();
     }
 }
