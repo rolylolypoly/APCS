@@ -59,6 +59,37 @@ class BetterBot extends Robot implements Directions {
         }
         roombaLeft();
     }
+    public void SimplePathing() {
+        if (frontIsClear()) {
+            move();
+            turnLeft();
+            SimplePathing();
+        }
+        else {
+            while (!frontIsClear()) {
+                turnRight();
+            }
+            SimplePathing();
+        }
+    }
+    public int countBeepers() {
+        int numberOfBeepers = 0;
+        if (!anyBeepersInBeeperBag()){
+            while (nextToABeeper()) {
+                pickBeeper();
+                numberOfBeepers ++;
+            }
+            return numberOfBeepers;
+            while (anyBeepersInBeeperBag()) {
+                putBeeper();
+            }
+        }
+        else {
+            System.err.print("BEEPER BAG NOT EMPTY");
+        }
+
+    }
+
 }
 
 
@@ -66,15 +97,14 @@ class BetterBot extends Robot implements Directions {
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
         BetterBot b = new BetterBot(9,9,North, 999);
-        b.roombaRight();
+        b.SimplePathing();
 
 
     }
     static {
         World.reset();
-        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/problembox.kwld");
+        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/openproblembox.kwld");
         World.setDelay(1);
-        World.repaint();
         World.setVisible();
     }
 }
