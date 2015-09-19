@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/KarelJRobot.jar!/" />
+          <root url="jar://$USER_HOME$/Documents/Karel Shitbot/KarelJRobot.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
