@@ -105,6 +105,40 @@ class BetterBot extends Robot implements Directions {
             putBeeper();
         }
     }
+    public void checkPick() {
+        if (nextToABeeper() == true) {
+            pickBeeper();
+            checkPick();
+        }
+        else {
+            System.out.println("No beeper here.");
+        }
+    }
+    public void leekspinL() { //assumes hugging south wall
+        turnLeft();
+        avoid();
+        turnRight();
+        avoid();
+        turnRight();
+        avoid();
+        turnLeft();
+    }
+    public void avoid() {
+        if (frontIsClear() == true) {
+            move();
+            checkPick();
+        }
+        else {
+            leekspinL();
+        }
+    }
+    public void pathfinding() {
+        int n = 0;
+        while(n<=9) { //number of iterations
+            avoid();
+            n++;
+        }
+    }
 
 }
 
