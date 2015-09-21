@@ -42,6 +42,8 @@ class BetterBot extends Robot implements Directions {
     }
     */
 
+    //testing
+    /*
     public void roombaLeft() {
         while(frontIsClear()) {
             move();
@@ -60,10 +62,12 @@ class BetterBot extends Robot implements Directions {
         }
         roombaLeft();
     }
+    */
 
+    //testing
     /*
     @SuppressWarnings("InfiniteRecursion")
-    public void SimplePathing() { //testing
+    public void SimplePathing() {
         if (frontIsClear()) {
             move();
             turnLeft();
@@ -78,14 +82,14 @@ class BetterBot extends Robot implements Directions {
     }
     */
 
-    public int countBeepers() { //assumes empty bag
+    public int countBeepers() { //assumes empty bag, returns number of beepers on floor, puts beepers back onto floor
         int numberOfBeepers = 0;
         if (!anyBeepersInBeeperBag()){
-            while (nextToABeeper()) {
+            while (nextToABeeper()) { //start counting
                 pickBeeper();
                 numberOfBeepers ++;
             }
-            emptyBeeperBag();
+            emptyBeeperBag(); // done counting
 
         }
         else if(!nextToABeeper()) {
