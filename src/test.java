@@ -16,12 +16,11 @@ class BetterBot extends Robot implements Directions {
         turnLeft();
         turnLeft();
     }
-    /*
+
     public void turnAround() {
         turnLeft();
         turnLeft();
     }
-    */
 
     //this gets ugly
     /*
@@ -169,6 +168,72 @@ class BetterBot extends Robot implements Directions {
         }
 
     }
+    public boolean wallOnRight() {
+        turnRight();
+        if (frontIsClear()) {
+            turnLeft();
+            return false;
+        }
+        else {
+            turnLeft();
+            return true;
+        }
+    }
+    public boolean wallOnLeft() {
+        turnLeft();
+        if (frontIsClear()) {
+            turnRight();
+            return false;
+        }
+        else {
+            turnRight();
+            return true;
+        }
+    }
+    public boolean beeperOnRight() {
+        turnRight();
+        if (frontIsClear()) {
+            move();
+            if (nextToABeeper()) {
+                turnAround();
+                move();
+                turnRight();
+                return true;
+            }
+            else {
+                turnAround();
+                move();
+                turnRight();
+                return false;
+            }
+        }
+        else {
+            System.err.println("PATH BLOCKED BY WALL");
+            return false;
+        }
+    }
+    public boolean beeperOnLeft() {
+        turnLeft();
+        if (frontIsClear()) {
+            move();
+            if (nextToABeeper()) {
+                turnAround();
+                move();
+                turnLeft();
+                return true;
+            }
+            else {
+                turnAround();
+                move();
+                turnLeft();
+                return false;
+            }
+        }
+        else {
+            System.err.println("PATH BLOCKED BY WALL");
+            return false;
+        }
+    }
 
 }
 
@@ -177,9 +242,7 @@ class BetterBot extends Robot implements Directions {
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
         BetterBot b = new BetterBot(8,4,North, 0);
-        b.pastafarianism();
-        BetterBot c = new BetterBot(4,4,North, 0);
-        c.pastafarianism();
+
 
     }
     static {
