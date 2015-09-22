@@ -16,11 +16,12 @@ class BetterBot extends Robot implements Directions {
         turnLeft();
         turnLeft();
     }
-
+    /*
     public void turnAround() {
         turnLeft();
         turnLeft();
     }
+    */
 
     //this gets ugly
     /*
@@ -106,7 +107,7 @@ class BetterBot extends Robot implements Directions {
         }
     }
     public void checkPick() {
-        if (nextToABeeper() == true) {
+        if (nextToABeeper()) {
             pickBeeper();
             checkPick();
         }
@@ -124,7 +125,7 @@ class BetterBot extends Robot implements Directions {
         turnLeft();
     }
     public void avoid() {
-        if (frontIsClear() == true) {
+        if (frontIsClear()) {
             move();
             checkPick();
         }
@@ -132,6 +133,7 @@ class BetterBot extends Robot implements Directions {
             leekspinL();
         }
     }
+    /*
     public void pathfinding() {
         int n = 0;
         while(n<=9) { //number of iterations
@@ -139,6 +141,7 @@ class BetterBot extends Robot implements Directions {
             n++;
         }
     }
+    */
     public void goRight() {
         turnRight();
         move();
@@ -147,12 +150,22 @@ class BetterBot extends Robot implements Directions {
         turnLeft();
         move();
     }
+    public void findNorth() {
+        while (!facingNorth()) {
+            turnLeft();
+        }
+    }
     public void pastafarianism() {
-        switch (countBeepers() % 2) {
-            case 0: goRight();
-                break;
-            case 1: goLeft();
-                break;
+        if (facingNorth()) {
+            switch (countBeepers() % 2) {
+                case 0: goRight();
+                    break;
+                case 1: goLeft();
+                    break;
+            }
+        }
+        else {
+            findNorth();
         }
 
     }
