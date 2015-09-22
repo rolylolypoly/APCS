@@ -139,6 +139,23 @@ class BetterBot extends Robot implements Directions {
             n++;
         }
     }
+    public void goRight() {
+        turnRight();
+        move();
+    }
+    public void goLeft() {
+        turnLeft();
+        move();
+    }
+    public void pastafarianism() {
+        switch (countBeepers() % 2) {
+            case 0: goRight();
+                break;
+            case 1: goLeft();
+                break;
+        }
+
+    }
 
 }
 
@@ -146,15 +163,15 @@ class BetterBot extends Robot implements Directions {
 
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
-        BetterBot b = new BetterBot(9,9,North, 0);
-        System.out.println(b.countBeepers());
-        b.turnAround();
-        b.move();
+        BetterBot b = new BetterBot(8,4,North, 0);
+        b.pastafarianism();
+        BetterBot c = new BetterBot(4,4,North, 0);
+        c.pastafarianism();
 
     }
     static {
         World.reset();
-        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/counting.kwld");
+        World.readWorld("C:/Users/jacky/Downloads/ch6_4.kwld");
         World.setDelay(1);
         World.setVisible();
     }
