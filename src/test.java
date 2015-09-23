@@ -141,11 +141,11 @@ class BetterBot extends Robot implements Directions {
         }
     }
     */
-    public void goRight() {
+    public void moveR() {
         turnRight();
         move();
     }
-    public void goLeft() {
+    public void moveL() {
         turnLeft();
         move();
     }
@@ -157,9 +157,9 @@ class BetterBot extends Robot implements Directions {
     public void pastafarianism() {
         if (facingNorth()) {
             switch (countBeepers() % 2) {
-                case 0: goRight();
+                case 0: moveR();
                     break;
-                case 1: goLeft();
+                case 1: moveL();
                     break;
             }
         }
