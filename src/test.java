@@ -244,18 +244,17 @@ class BetterBot extends Robot implements Directions {
     public boolean isRoom() {
         move();
         turnLeft();
-        int n;
-        for (n = 0; n <= 2; n++) {
-            if (frontIsClear()) {
-                turnRight();
-            }
-            else {
-                moveOut();
-                return false;
-            }
+        while (!frontIsClear()) {
+            turnRight();
         }
-        moveOut();
-        return true;
+        if (facingSouth()) {
+            moveOut();
+            return true;
+        }
+        else {
+            moveOut();
+            return false;
+        }
     }
     public void checkRoom() {
         move();
@@ -263,7 +262,9 @@ class BetterBot extends Robot implements Directions {
         if (isRoom()) {
             turnLeft();
             move();
+            System.out.println("Before PUTBEEPER");
             putBeeper();
+            System.out.println("After PUTBEEPER");
             turnAround();
             move();
             turnLeft();
@@ -285,14 +286,14 @@ class BetterBot extends Robot implements Directions {
 
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
-        BetterBot b = new BetterBot(8,4,North, 0);
-
+        BetterBot b = new BetterBot(1,1,East, 9);
+        b.roomBeeper();
 
     }
     static {
         World.reset();
-        World.readWorld("C:/Users/jacky/Downloads/blank.kwld");
-        World.setDelay(1);
+        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/rooms.kwld");
+        World.setDelay(10);
         World.setVisible();
     }
 }
