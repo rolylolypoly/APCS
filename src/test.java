@@ -337,19 +337,27 @@ class BetterBot extends Robot implements Directions {
         move();
         turnLeft();
     }
+    public void highwayToHek() {
+        while (!facingSouth()) {
+            turnLeft();
+        }
+        while (facingSouth() && beeperOnRight()) {
+            move();
+        }
+    }
 }
 
 
 
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
-        BetterBot b = new BetterBot(1,1,East, 9);
-        b.scootRight();
+        BetterBot b = new BetterBot(6,2,North, 0);
+        b.highwayToHek();
 
     }
     static {
         World.reset();
-        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/rooms.kwld");
+        World.readWorld("C:/Users/jacky/Documents/Karel Shitbot/highwaytokeck.kwld");
         World.setDelay(1);
         World.setVisible();
     }
