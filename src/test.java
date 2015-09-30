@@ -300,6 +300,43 @@ class BetterBot extends Robot implements Directions {
             System.err.println("WHAT THE FUCK DID JUST HAPPEN HERE?");
         }
     }
+    public void scootRight() {
+        while (wallBehind() && beeperInFront()) {
+            moveRight();
+        }
+    }
+
+    public boolean wallBehind() {
+        turnAround();
+        if (frontIsClear()) {
+            turnAround();
+            return true;
+        }
+        else {
+            turnAround();
+            return false;
+        }
+    }
+    public boolean beeperInFront() {
+        move();
+        if (nextToABeeper()) {
+            turnAround();
+            move();
+            turnAround();
+            return true;
+        }
+        else {
+            turnAround();
+            move();
+            turnAround();
+            return false;
+        }
+    }
+    public void moveRight() {
+        turnRight();
+        move();
+        turnLeft();
+    }
 }
 
 
@@ -307,7 +344,7 @@ class BetterBot extends Robot implements Directions {
 public class test implements Directions  {
     public static void main(String[] args) throws Exception {
         BetterBot b = new BetterBot(1,1,East, 9);
-        b.roomBeeper();
+        b.scootRight();
 
     }
     static {
